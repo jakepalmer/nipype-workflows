@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#PBS -P HBA
+#PBS -N dwi_preproc
+#PBS -l select=1:ncpus=10:mem=32GB
+#PBS -l walltime=10:00:00
+#PBS -j oe
+#PBS -M jake.palmer@sydney.edu.au
+#PBS -m ae
+#PBS -q defaultQ
+
+module load singularity/3.7.0
+
+base_dir="/path/to/sif/file"
+img_name="docker_image_name"
+
+cd ${base_dir} || exit
+
+singularity run ${img_name} python3 ./code/run.py
